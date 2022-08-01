@@ -86,7 +86,7 @@ const save = (body) => { Book.push(body);}
 
 const borrar = (id) => {
   const index = Book.findIndex((registro) => registro.id == id);
-  if (index > 0) {
+  if (index >= 0) {
     Book.splice(index, 1);
     return true
   }
