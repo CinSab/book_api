@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     res.status(200).json(dao.getAll(req.query));
 });
 
-/* Obtener uno especifico */
+/* Obtener dato especifico */
 router.get("/:id", (req, res) => {
     const id = req.params.id;
     const data = dao.getOne(id);
@@ -23,11 +23,13 @@ router.get("/:id", (req, res) => {
 /* Agregar un elemento */
 
 router.post("/",middleware.validarUserLogin, (req, res) => {
-  
-  const body = { ...req.body, id: middleware.getRandomInt(1, 1000000)};
+  const body = { id: uuidv4(), ...req.body };
+    
   dao.save(body);
   res.status(200).json(body);
 });
+
+/* Eliminar un elemento */
 
 router.delete("/:id",middleware.validarUserLogin, (req, res) => {
     const id = req.params.id;
@@ -42,8 +44,9 @@ router.delete("/:id",middleware.validarUserLogin, (req, res) => {
 /* Modificar un elemento */
 router.put("/:id",middleware.validarUserLogin, (req, res) => {
     const id = req.params.id;
-
-    if (dao.update(id, req.body)) {
+    const body = { id: id, ...req.body };
+    
+    if (dao.update(id, body)) {
         res.sendStatus(202);
     } else {
         res.sendStatus(404);
