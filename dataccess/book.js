@@ -1,11 +1,14 @@
 let Book = [
-  {
+   {
     id: 1,
     title: "Un mundo feliz",
     author: "Huxley",
     genre: "Ciencia ficcion",
     content: "buen libro",
-    active: true
+    publishedDate: 1932,
+    active: true,
+    createDate: null,
+    updateDate: null
   },
   {
     id: 2,
@@ -13,7 +16,10 @@ let Book = [
     author: "Stephen King",
     genre: "Ciencia ficcion",
     content: "buen libro",
-    active: true
+    publishedDate: 2009,
+    active: true,
+    createDate: null,
+    updateDate: null
   },
   {
     id: 3,
@@ -21,7 +27,10 @@ let Book = [
     author: "Hernam Hesse",
     genre: "Ciencia ficcion",
     content: "buen libro",
-    active: true
+    publishedDate: 1927,
+    active: true,
+    createDate: null,
+    updateDate: null
   },
   {
     id: 4,
@@ -29,7 +38,10 @@ let Book = [
     author: "Philip K. Dick",
     genre: "Ciencia ficcion",
     content: "buen libro",
-    active: false
+    publishedDate: 1969,
+    active: false,
+    createDate: null,
+    updateDate: null
   },
 ];
 
@@ -42,6 +54,10 @@ const getAll = (filter) => {
 
   if(filter.active){
     filtrado = filtrado.filter(b => b.active == filter.active)
+  }
+  
+  if(filter.publishedDate){
+    filtrado = filtrado.filter(b => b.publishedDate == filter.publishedDate)
   }
 
   if(filter.author){
@@ -63,40 +79,6 @@ const getAll = (filter) => {
   return filtrado
 }
 
- /* let filtrado = Book;
- 
-    if(filter.title){
-      filtrado = filtrado.filter(e => e.title === filter.title)
-    }
-
-    if(filter.author){
-      filtrado = filtrado.filter(e => e.author.search(filter.author) > -1)
-    }
-
-    if(filter.genre){
-      filtrado = filtrado.filter(e => e.genre.search(filter.genre) > -1)
-    }
-
-    if(filter.content){
-      filtrado = filtrado.filter (e => e.content.search(filter.content) > -1)
-    }
-
-    if(filter.multitle){
-      filtrado = filtrado.filter(e => filter.multitle.split(',').includes(e.title))
-    }
-
-    if(filter.search){
-      filtrado = filtrado.filter(e => e.title.includes(filter.search) || e.content.includes(filter.search))
-    }
-
-    if(filter.multisearch){
-      const palabrasABuscar = filter.multisearch.split(',');
-      filtrado = filtrado.filter(book => { 
-        const filtro = palabrasABuscar.filter(palabra => book.title.includes(palabra) || book.content.includes(palabra))
-        return filtro.length > 0      
-      })
-  }
-}*/
 
 const getOne = (id) => { return Book.find((registro) => registro.id == id);}
 
