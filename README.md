@@ -1,5 +1,5 @@
 # book_api
-A CRUD API book
+CRUD API book
 
 Dependencies:
   express
