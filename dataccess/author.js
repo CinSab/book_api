@@ -1,44 +1,23 @@
 let Author = [{
         id: 1,
-        title: "Huxley"
+        author: "Huxley"
     },
     {
         id: 2,
-        title: "Dick"
+        author: "Dick"
     },
     {
         id: 3,
-        title: "King"
+        author: "King"
     }
 ];
 
 const getAll = (filter) => {
     let filtrado = Author;
 
-    if (filter.title) {
-        filtrado = filtrado.filter(e => e.title === filter.title)
+    if (filter.author) {
+        filtrado = filtrado.filter(e => e.author === filter.author)
     }
-
-    if (filter.content) {
-        filtrado = filtrado.filter(e => e.content.includes(filter.content))
-    }
-
-    if (filter.multitle) {
-        filtrado = filtrado.filter(e => filter.multitle.split(',').includes(e.title))
-    }
-
-    if (filter.search) {
-        filtrado = filtrado.filter(e => e.title.includes(filter.search) || e.content.includes(filter.search))
-    }
-
-    if (filter.multisearch) {
-        const palabrasABuscar = filter.multisearch.split(',');
-        filtrado = filtrado.filter(author => {
-            const filtro = palabrasABuscar.filter(palabra => author.title.includes(palabra) || author.content.includes(palabra))
-            return filtro.length > 0
-        })
-    }
-
 
     return filtrado
 };
@@ -49,7 +28,7 @@ const save = (body) => { Author.push(body); }
 
 const borrar = (id) => {
     const index = Author.findIndex((registro) => registro.id == id);
-    if (index > 0) {
+    if (index >= 0) {
         Author.splice(index, 1);
         return true
     }
